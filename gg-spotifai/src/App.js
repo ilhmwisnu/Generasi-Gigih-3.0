@@ -1,24 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import SongTile from "./component/song_card"
+import FavoriteSongTile from "./component/favorite_song_card";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <>
+      <div class="content">
+      <div class="sidebar">
+        <h4 class="">Most Played</h4>
+        <div class="most-played">
+          <FavoriteSongTile></FavoriteSongTile>
+          <FavoriteSongTile></FavoriteSongTile>
+          <FavoriteSongTile></FavoriteSongTile>
+        </div>
+      </div>
+      <div class="main">
+        <h3>All Song</h3>
+        <div class="all-song">
+          <SongTile></SongTile>
+          <SongTile></SongTile>
+          <SongTile></SongTile>
+          <SongTile></SongTile>
+        </div>
+      </div>
     </div>
+    </>
   );
 }
 
