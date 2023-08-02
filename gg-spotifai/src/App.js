@@ -1,28 +1,23 @@
-import SongTile from "./component/song_card"
-import FavoriteSongTile from "./component/favorite_song_card";
+import LoginView from "./component/login_view";
+import HomeView from "./component/home_view";
+import { useState, useEffect } from "react";
 
 function App() {
+  let [isLogin, setIsLogin] = useState(false);
+  let [accessToken, setSccessToken] = useState(null);
+
+  async function login() {
+    setIsLogin(true);
+  }
+
+  useEffect(() => {
+    console.log(window.location.accessToken);
+  }, []);
+
   return (
     <>
-      <div class="content">
-      <div class="sidebar">
-        <h4 class="">Most Played</h4>
-        <div class="most-played">
-          <FavoriteSongTile></FavoriteSongTile>
-          <FavoriteSongTile></FavoriteSongTile>
-          <FavoriteSongTile></FavoriteSongTile>
-        </div>
-      </div>
-      <div class="main">
-        <h3>All Song</h3>
-        <div class="all-song">
-          <SongTile></SongTile>
-          <SongTile></SongTile>
-          <SongTile></SongTile>
-          <SongTile></SongTile>
-        </div>
-      </div>
-    </div>
+      {isLogin && <HomeView></HomeView>}
+      {!isLogin && <LoginView onClick={login}></LoginView>}
     </>
   );
 }
