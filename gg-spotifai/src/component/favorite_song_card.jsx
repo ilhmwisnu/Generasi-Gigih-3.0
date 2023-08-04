@@ -1,11 +1,11 @@
 const FavoriteSongCard = () => {
   return (
-    <div class="song">
-      <div class="flex">
-        <img src="https://picsum.photos/200" width="48" alt="" srcset="" />
-        <div class="">
-          <p class="title">Song Title</p>
-          <p class="artist">Song Artist</p>
+    <div className="song">
+      <div className="flex">
+        <img src="https://picsum.photos/200" width="48" alt=""/>
+        <div className="">
+          <p className="title">Song Title</p>
+          <p className="artist">Song Artist</p>
         </div>
       </div>
     </div>

@@ -1,10 +1,11 @@
-import LoginView from "./component/login_view";
-import HomeView from "./component/home_view";
+import LoginView from "./views/login_view";
+import HomeView from "./views/home_view";
 import { useState, useEffect } from "react";
-import {TokenContext} from "./context/context"
+import { TokenContext } from "./context/context";
+import { BrowserRouter, Switch, Route, Link, Redirect } from "react-router-dom";
+import SearchView from "./views/search_view";
 
 function App() {
-  let [isLogin, setIsLogin] = useState(false);
   let [accessToken, setAccessToken] = useState(null);
 
   async function login() {
@@ -14,7 +15,7 @@ function App() {
 
   useEffect(() => {
     const hashParam = new URLSearchParams(
-       window.location.hash.replace("#", "")
+      window.location.hash.replace("#", "")
     );
 
     let token = hashParam.get("access_token");
@@ -22,17 +23,46 @@ function App() {
 
     if (token) {
       setAccessToken(token);
-      setIsLogin(true);
     } else {
       setAccessToken(null);
-      setIsLogin(false);
     }
   }, []);
 
   return (
     <TokenContext.Provider value={accessToken}>
-      {isLogin && <HomeView></HomeView>}
-      {!isLogin && <LoginView onClick={login}></LoginView>}
+      <BrowserRouter>
+        <div className="flex p-4 items-start gap-x-4">
+          {accessToken && (
+            <div className="flex-none flex flex-col gap-y-4 w-64 box">
+              <Link className="hover:text-white" to="/">
+                Home
+              </Link>
+              <Link className="hover:text-white" to="/search">
+                Search
+              </Link>
+            </div>
+          )}
+          <div className="flex-grow">
+            <Switch>
+              <Route exact path="/create-playlist">
+                {accessToken ? <HomeView /> : <Redirect to="/" />}
+              </Route>
+              <Route exact path="/recomendation">
+                Recomendation
+              </Route>
+              <Route exact path="/search">
+                <SearchView />
+              </Route>
+              <Route exact path="/">
+                {accessToken ? <HomeView /> : <LoginView onClick={login} />}
+              </Route>
+              <Route exact path="/:playlist">
+                Playlist
+              </Route>
+            </Switch>
+          </div>
+        </div>
+      </BrowserRouter>
     </TokenContext.Provider>
   );
 }

@@ -4,7 +4,7 @@ const useFetch = (initialUrl, options) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [url, setUrl] = useState(initialUrl || "");
+  const [url] = useState(initialUrl || "");
 
   useEffect(() => {
     if (!url) return;
