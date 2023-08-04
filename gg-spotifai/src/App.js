@@ -4,14 +4,25 @@ import { useState, useEffect } from "react";
 
 function App() {
   let [isLogin, setIsLogin] = useState(false);
-  let [accessToken, setSccessToken] = useState(null);
+  let [accessToken, setAccessToken] = useState(null);
 
   async function login() {
     setIsLogin(true);
   }
 
   useEffect(() => {
-    console.log(window.location.accessToken);
+    const hashParam = new URLSearchParams(window.location.hash.replace("#",""))
+    
+    let token = hashParam.get("access_token")
+    console.log(token);
+
+    if (token) {
+      setAccessToken(token)
+      setIsLogin(true)
+    } else {
+      setAccessToken(null)
+      setIsLogin(false)
+    }
   }, []);
 
   return (
