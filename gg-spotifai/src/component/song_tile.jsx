@@ -1,4 +1,4 @@
-const SongCard = ({ title, artist, imgUrl, onClick }) => {
+const SongTile = ({ title, artist, imgUrl, onClick }) => {
   return (
     <div className="bg-appBlack-2">
       <div className="flex items-center gap-4">
@@ -15,4 +15,4 @@ const SongCard = ({ title, artist, imgUrl, onClick }) => {
   );
 };
 
-export default SongCard;
+export default SongTile;

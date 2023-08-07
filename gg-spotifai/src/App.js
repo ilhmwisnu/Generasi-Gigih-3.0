@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { TokenContext } from "./context/context";
 import { BrowserRouter, Switch, Route, Link, Redirect } from "react-router-dom";
 import SearchView from "./views/search_view";
+import RecomendationView from "./views/recomendation_view";
 
 function App() {
   let [accessToken, setAccessToken] = useState(null);
@@ -35,7 +36,7 @@ function App() {
           {accessToken && (
             <div className="flex-none flex flex-col gap-y-4 w-64 box">
               <Link className="hover:text-white" to="/">
-                Home
+                Recomendation
               </Link>
               <Link className="hover:text-white" to="/search">
                 Search
@@ -54,7 +55,7 @@ function App() {
                 <SearchView />
               </Route>
               <Route exact path="/">
-                {accessToken ? <HomeView /> : <LoginView onClick={login} />}
+                {accessToken ? <RecomendationView /> : <LoginView onClick={login} />}
               </Route>
               <Route exact path="/:playlist">
                 Playlist
