@@ -22,6 +22,7 @@ const RecomendationView = () => {
           })}
         </div>
       )}
+      { error && <p>{error}</p> }
     </div>
   );
 };
