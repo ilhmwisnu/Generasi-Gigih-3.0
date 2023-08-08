@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const Song = require("./model/song");
 const Playlist = require("./model/playlist");
 
-const port = 3000;
+const port = 80;
 
 let myPlayList = new Playlist("My Favorite", []);
 
